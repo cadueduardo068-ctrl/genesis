@@ -1,0 +1,466 @@
+<!doctype html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Gênesis Energia Solar e Climatização | Jaú</title>
+<meta name="description" content="Energia solar em Jaú e região: projeto, instalação e homologação na CPFL. Simule a economia pela sua conta de luz e peça o orçamento pelo WhatsApp.">
+<meta property="og:title" content="Gênesis Energia Solar e Climatização | Jaú">
+<meta property="og:description" content="Simule a economia pela sua conta de luz e peça o orçamento pelo WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Instrument+Sans:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --u:min(calc(100vw/1600),calc(100vh/900));
+  --k:1;--k2:1;--dip:0;
+  --ink:color-mix(in srgb,#14202f calc((1 - var(--k))*100%),#fff);
+  --nav:color-mix(in srgb,#1b2736 calc((1 - var(--k))*100%),#eef1f6);
+  --soft:color-mix(in srgb,#1b2736 calc((1 - var(--k))*100%),#dfe5ee);
+  --mute:color-mix(in srgb,#4a5563 calc((1 - var(--k))*100%),#aeb9c9);
+  --mist:color-mix(in srgb,#dedacb calc((1 - var(--k))*100%),#18223a);
+  --glass:color-mix(in srgb,rgba(255,255,255,.46) calc((1 - var(--k))*100%),rgba(120,132,140,.24));
+  --edge:color-mix(in srgb,rgba(255,255,255,.7) calc((1 - var(--k))*100%),rgba(255,255,255,.18));
+  --rule:color-mix(in srgb,rgba(20,32,47,.16) calc((1 - var(--k))*100%),rgba(255,255,255,.14));
+  --accent:color-mix(in srgb,#4f6b16 calc((1 - var(--k))*100%),#d8ee8e);
+  --ease-out:cubic-bezier(.22,1,.36,1);
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{background:#0b1426;scroll-behavior:smooth}
+body{font-family:"Instrument Sans",system-ui,sans-serif;-webkit-font-smoothing:antialiased;color:var(--ink)}
+a{color:inherit;text-decoration:none}
+button{font:inherit;color:inherit;background:none;border:0;cursor:pointer}
+
+/* ---------- camadas fixas: céu e neblina atrás do site inteiro ---------- */
+.layer,.layer img{position:absolute;inset:0;width:100%;height:100%}
+.layer img{display:block;object-fit:cover;object-position:50% 62%}
+.sky{position:fixed;z-index:0}
+.sky img{filter:blur(calc(7*var(--u)));transform:scale(1.05)}
+#skyN{opacity:var(--k)}
+#fog{position:fixed;inset:0;width:100%;height:100%;z-index:2;pointer-events:none}
+
+/* ---------- HERO (layout e animação de referência) ---------- */
+.hero{position:relative;height:100svh;min-height:520px;overflow:hidden}
+.home{z-index:1;will-change:transform;transform:translate3d(0,var(--sink,0px),0)}
+.home .set{position:absolute;inset:0;visibility:hidden}
+.home .set.is-on{visibility:visible}
+.ground{-webkit-mask-image:linear-gradient(transparent 54%,#000 64%);mask-image:linear-gradient(transparent 54%,#000 64%)}
+.cut{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;object-position:50% 62%}
+.tilt{position:absolute;inset:0;z-index:1;pointer-events:none;-webkit-backdrop-filter:blur(calc(9*var(--u)));backdrop-filter:blur(calc(9*var(--u)));-webkit-mask-image:linear-gradient(transparent 70%,#000 92%);mask-image:linear-gradient(transparent 70%,#000 92%)}
+.settle{position:absolute;left:0;right:0;bottom:0;height:22%;z-index:1;pointer-events:none;background:linear-gradient(transparent,var(--mist))}
+.ui{position:absolute;inset:0;z-index:3;display:flex;flex-direction:column;align-items:center;pointer-events:none}
+.ui a,.ui button{pointer-events:auto}
+.bar{width:100%;display:flex;align-items:center;padding:calc(22*var(--u)) calc(38*var(--u)) 0;color:var(--nav)}
+.logo{display:flex;align-items:center;gap:calc(10*var(--u));color:var(--ink);flex:1 1 0}
+.logo svg{width:calc(38*var(--u));height:calc(38*var(--u));flex:none}
+.logo b{display:block;font-size:calc(25*var(--u));font-weight:500;letter-spacing:-.025em;line-height:1}
+.logo small{display:block;font-size:calc(12.5*var(--u));opacity:.7;margin-top:calc(3*var(--u))}
+.links{display:flex;gap:calc(42*var(--u));list-style:none;font-size:calc(16.5*var(--u));font-weight:500;opacity:calc(1 - var(--dip)*.82)}
+.links a:hover{text-decoration:underline;text-underline-offset:4px}
+.side{flex:1 1 0;display:flex;align-items:center;justify-content:flex-end;gap:calc(32*var(--u));font-size:calc(16.5*var(--u));font-weight:500}
+.side>a:first-child{opacity:calc(1 - var(--dip)*.82)}
+.cta{display:inline-flex;align-items:center;justify-content:center;height:calc(46*var(--u));padding:0 calc(26*var(--u));border-radius:99px;
+  background:color-mix(in srgb,#0d1117 calc((1 - var(--k))*100%),#fff);color:color-mix(in srgb,#fff calc((1 - var(--k))*100%),#0d1117);opacity:calc(1 - var(--dip)*.62);transition:transform .25s var(--ease-out)}
+.cta:hover{transform:translateY(-1px)}
+h1{margin-top:calc(58*var(--u));text-align:center;font-size:calc(64*var(--u));line-height:1.09;font-weight:500;letter-spacing:-.022em;color:var(--ink)}
+h1 span{display:block}
+h1 .l1,h1 .y{opacity:calc(1 - var(--dip)*.8)}
+h1 i{font-style:normal;color:color-mix(in srgb,#14202f calc((1 - var(--k2))*42%),color-mix(in srgb,#fff calc(var(--k2)*100%),#7c8794))}
+h1 .y{display:inline}
+.dock{margin-top:auto;padding-bottom:calc(40*var(--u));display:flex;flex-direction:column;align-items:center}
+.toggle{position:relative;display:grid;grid-template-columns:1fr 1fr;width:calc(524*var(--u));height:calc(86*var(--u));padding:calc(2*var(--u));border-radius:calc(16*var(--u));overflow:hidden;
+  background:rgba(120,132,140,.34);border:1px solid rgba(255,255,255,.2);-webkit-backdrop-filter:blur(calc(14*var(--u)));backdrop-filter:blur(calc(14*var(--u)))}
+.toggle button{position:relative;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:calc(3*var(--u));border-radius:calc(13*var(--u));color:#fff;overflow:hidden}
+.toggle button:before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(160deg,#f7f8dc,#e2ee9f 90%);box-shadow:inset 0 0 calc(18*var(--u)) rgba(255,255,255,.65);opacity:var(--on)}
+.toggle b,.toggle small{position:relative;color:color-mix(in srgb,#1c2316 calc(var(--on)*100%),#fff)}
+.toggle b{font-size:calc(23*var(--u));font-weight:500;letter-spacing:-.012em}
+.toggle small{font-size:calc(15*var(--u));opacity:.72}
+.cap{margin-top:calc(22*var(--u));text-align:center;font-size:calc(16.4*var(--u));line-height:1.3;color:var(--soft)}
+.is-m{--on:calc(1 - var(--k))}.is-n{--on:var(--k)}
+button:focus-visible,a:focus-visible,input:focus-visible{outline:2px solid #fff;outline-offset:3px}
+.toggle button:focus-visible{outline-offset:-4px}
+
+/* ---------- peças do tema ---------- */
+.glass{background:var(--glass);border:1px solid var(--edge);border-radius:16px;-webkit-backdrop-filter:blur(14px) saturate(1.1);backdrop-filter:blur(14px) saturate(1.1)}
+.lime{position:relative;display:inline-flex;align-items:center;justify-content:center;gap:10px;height:56px;padding:0 30px;border-radius:13px;color:#1c2316;font-weight:500;font-size:17px;
+  background:linear-gradient(160deg,#f7f8dc,#e2ee9f 90%);box-shadow:inset 0 0 18px rgba(255,255,255,.65),0 10px 30px -12px rgba(120,150,40,.55);transition:transform .25s var(--ease-out)}
+.lime:hover{transform:translateY(-1px)}
+.lime svg{width:20px;height:20px}
+.eyebrow{display:inline-flex;align-items:center;gap:8px;font-size:14px;font-weight:500;color:var(--soft)}
+.eyebrow svg{width:16px;height:16px;fill:var(--accent)}
+h2{font-size:clamp(34px,4.1vw,58px);line-height:1.06;font-weight:500;letter-spacing:-.022em;color:var(--ink)}
+.lead{font-size:18px;line-height:1.5;color:var(--soft)}
+
+/* conteúdo rola sobre o céu, com a neblina por trás */
+.content{position:relative;z-index:3;background:linear-gradient(var(--mist),color-mix(in srgb,var(--mist) 55%,transparent) 220px,color-mix(in srgb,var(--mist) 40%,transparent))}
+.wrap{width:min(1180px,100% - 48px);margin-inline:auto}
+section{padding:110px 0}
+
+/* faixa de prova */
+.proof{padding:0 0 10px;transform:translateY(-34px)}
+.proof .glass{display:flex;flex-wrap:wrap;align-items:center;justify-content:center;gap:14px 34px;padding:18px 28px;width:fit-content;margin:0 auto;font-size:15.5px;color:var(--soft)}
+.stars{display:flex;align-items:center;gap:10px;color:var(--ink)}
+.stars strong{font-size:26px;font-weight:500;letter-spacing:-.02em}
+.stars svg{width:90px;height:17px;fill:var(--accent)}
+.proof a{color:var(--ink);text-decoration:underline;text-underline-offset:4px;text-decoration-color:var(--rule)}
+.dot{width:4px;height:4px;border-radius:50%;background:var(--rule)}
+
+/* simulador */
+.sim .wrap{display:grid;grid-template-columns:1fr 1.05fr;gap:64px;align-items:center}
+.sim h2{margin:16px 0 20px}
+.sim .lead{max-width:440px}
+.panel{padding:34px 34px 30px}
+.panel label{display:block;font-size:15px;font-weight:500;color:var(--soft)}
+.bill{display:flex;align-items:baseline;gap:8px;margin:10px 0 16px;border-bottom:1px solid var(--rule);padding-bottom:4px}
+.bill span{font-size:26px;font-weight:500;color:var(--soft)}
+.bill input{width:100%;font:inherit;font-size:60px;font-weight:500;letter-spacing:-.03em;border:0;background:none;color:var(--ink);-moz-appearance:textfield}
+.bill input::-webkit-outer-spin-button,.bill input::-webkit-inner-spin-button{-webkit-appearance:none}
+input[type=range]{width:100%;accent-color:#c9de6e}
+.out{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:24px}
+.out div{padding:16px 18px;border-radius:13px;background:color-mix(in srgb,var(--glass) 70%,transparent);border:1px solid var(--rule)}
+.out .big{background:linear-gradient(160deg,#f7f8dc,#e2ee9f 90%);box-shadow:inset 0 0 18px rgba(255,255,255,.65);border-color:transparent;color:#1c2316}
+.out small{display:block;font-size:13.5px;opacity:.72}
+.out b{display:block;font-size:28px;font-weight:500;letter-spacing:-.02em;margin-top:4px;font-variant-numeric:tabular-nums}
+.panel .lime{width:100%;margin-top:22px}
+.note{font-size:12.5px;line-height:1.45;color:var(--mute);margin-top:14px}
+
+/* como funciona */
+.how{text-align:center}
+.how h2{margin:16px auto 0;max-width:760px}
+.how .lead{margin:18px auto 0;max-width:520px}
+.track{position:relative;display:grid;grid-template-columns:repeat(4,1fr);margin-top:56px;padding:8px;text-align:left}
+.track li{list-style:none;position:relative;padding:26px 24px 30px;border-radius:12px}
+.track li+li:before{content:"";position:absolute;left:0;top:26px;bottom:30px;width:1px;background:var(--rule)}
+.track li.now{background:linear-gradient(160deg,#f7f8dc,#e2ee9f 90%);box-shadow:inset 0 0 18px rgba(255,255,255,.65);color:#1c2316}
+.track li.now:before,.track li.now+li:before{display:none}
+.track em{font-style:normal;font-size:13.5px;font-weight:500;opacity:.65}
+.track h3{font-size:22px;font-weight:500;letter-spacing:-.015em;margin:34px 0 10px;line-height:1.15}
+.track p{font-size:15.5px;line-height:1.5;opacity:.82}
+
+/* clima + instagram */
+.clima .wrap{display:grid;grid-template-columns:1.1fr .9fr;gap:20px}
+.clima .glass{padding:42px 40px}
+.clima h2{font-size:clamp(30px,3.2vw,44px);margin:16px 0 18px}
+.chips{display:flex;flex-wrap:wrap;gap:8px;margin-top:26px}
+.chips span{padding:9px 16px;border-radius:99px;border:1px solid var(--rule);font-size:14.5px;color:var(--soft)}
+.insta{display:flex;flex-direction:column;justify-content:space-between;padding:40px;border-radius:16px;background:linear-gradient(160deg,#f7f8dc,#e2ee9f 90%);box-shadow:inset 0 0 22px rgba(255,255,255,.65);color:#1c2316;transition:transform .25s var(--ease-out)}
+.insta:hover{transform:translateY(-2px)}
+.insta svg{width:46px;height:46px}
+.insta strong{display:block;font-size:30px;font-weight:500;letter-spacing:-.02em;line-height:1.1;margin-top:60px}
+.insta span{display:block;font-size:15.5px;opacity:.7;margin-top:8px}
+
+/* contato */
+.contact{text-align:center;padding-bottom:70px}
+.contact h2{max-width:820px;margin:16px auto 30px}
+.cards{display:grid;grid-template-columns:repeat(3,1fr);margin-top:56px;text-align:left}
+.cards>div{padding:28px 30px}
+.cards>div+div{border-left:1px solid var(--rule)}
+.cards h4{font-size:13.5px;font-weight:500;color:var(--mute);margin-bottom:10px}
+.cards p,.cards a{font-size:17px;line-height:1.55}
+.cards .phone{font-size:26px;font-weight:500;letter-spacing:-.02em}
+footer{position:relative;z-index:3;padding:26px 0 110px;font-size:13.5px;color:var(--mute)}
+footer .wrap{display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap}
+
+/* mini seletor dia/noite que acompanha a rolagem */
+.mini{position:fixed;right:20px;bottom:20px;z-index:5;display:grid;grid-template-columns:1fr 1fr;width:188px;height:48px;padding:2px;border-radius:12px;
+  background:rgba(120,132,140,.34);border:1px solid rgba(255,255,255,.22);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);
+  opacity:0;transform:translateY(10px);pointer-events:none;transition:opacity .3s var(--ease-out),transform .3s var(--ease-out)}
+.mini.show{opacity:1;transform:none;pointer-events:auto}
+.mini button{position:relative;border-radius:10px;font-size:15px;font-weight:500;overflow:hidden}
+.mini button:before{content:"";position:absolute;inset:0;border-radius:inherit;background:linear-gradient(160deg,#f7f8dc,#e2ee9f 90%);box-shadow:inset 0 0 12px rgba(255,255,255,.65);opacity:var(--on)}
+.mini span{position:relative;color:color-mix(in srgb,#1c2316 calc(var(--on)*100%),#fff)}
+
+@media (prefers-reduced-motion:no-preference){
+  .reveal{opacity:0;transform:translateY(14px);transition:opacity .45s var(--ease-out),transform .45s var(--ease-out)}
+  .reveal.in{opacity:1;transform:none}
+  .proof.reveal.in{transform:translateY(-34px)}
+}
+
+@media (max-width:820px){
+  :root{--u:1px}
+  .bar{padding:16px 16px 0}
+  .logo b{font-size:21px}.logo small{font-size:11px}.logo svg{width:32px;height:32px}
+  .links,.side>a:first-child{display:none}
+  .cta{height:40px;padding:0 16px;font-size:14px}
+  h1{margin-top:34px;padding:0 16px;font-size:clamp(34px,10.4vw,56px)}
+  .layer img,.home .cut{object-position:72% 62%!important}
+  .dock{width:100%;padding:0 16px 24px}
+  .toggle{width:100%;max-width:440px;height:74px}
+  .toggle b{font-size:19px}.toggle small{font-size:13px}
+  .cap{font-size:14px;max-width:360px}
+  .cap br{display:none}
+  section{padding:76px 0}
+  .proof .glass{width:auto;margin:0 16px}
+  .dot{display:none}
+  .sim .wrap,.clima .wrap{grid-template-columns:1fr;gap:28px}
+  .panel{padding:26px 20px}
+  .bill input{font-size:46px}
+  .out b{font-size:22px}
+  .track{grid-template-columns:1fr 1fr}
+  .track li+li:before{display:none}
+  .track h3{margin-top:18px}
+  .clima .glass,.insta{padding:30px 24px}
+  .insta strong{margin-top:30px}
+  .cards{grid-template-columns:1fr}
+  .cards>div+div{border-left:0;border-top:1px solid var(--rule)}
+  .mini{right:12px;bottom:12px}
+}
+</style>
+</head>
+<body>
+<div class="layer sky" aria-hidden="true">
+  <img referrerpolicy="no-referrer" id="skyM" alt="" src="https://images.higgs.ai/?default=1&amp;output=webp&amp;url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20261102_040343_a73684b4-3f71-4613-a843-c8be80fb1211.png&amp;w=1600&amp;q=80">
+  <img referrerpolicy="no-referrer" id="skyN" alt="" src="https://images.higgs.ai/?default=1&amp;output=webp&amp;url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20261102_040308_f31964ab-ed8e-4ea4-90eb-3226c0859936.png&amp;w=1600&amp;q=80">
+</div>
+<canvas id="fog" aria-hidden="true"></canvas>
+
+<main>
+<section class="hero" aria-label="Início" style="padding:0">
+  <div class="layer home">
+    <div class="set" id="setM">
+      <div class="layer ground"><img referrerpolicy="no-referrer" alt="" src="https://images.higgs.ai/?default=1&amp;output=webp&amp;url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20261102_040259_1be34093-835e-4de4-b3a8-f875e6a74591.png&amp;w=2560&amp;q=85"></div>
+      <img referrerpolicy="no-referrer" class="cut" alt="Casa com placas solares no telhado durante o dia" src="https://images.higgs.ai/?default=1&amp;output=webp&amp;url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20261102_040416_e3b05fa4-cc80-4a43-afde-8a0a053933e9.png&amp;w=2560&amp;q=85">
+    </div>
+    <div class="set is-on" id="setN">
+      <div class="layer ground"><img referrerpolicy="no-referrer" alt="" src="https://images.higgs.ai/?default=1&amp;output=webp&amp;url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20261102_040211_c8fd4865-285e-4c1f-8a37-4bfe0771357b.png&amp;w=2560&amp;q=85"></div>
+      <img referrerpolicy="no-referrer" class="cut" alt="A mesma casa à noite, com as janelas acesas" src="https://images.higgs.ai/?default=1&amp;output=webp&amp;url=https%3A%2F%2Fd8j0ntlcm91z4.cloudfront.net%2Fuser_38xzZboKViGWJOttwIXH07lWA1P%2Fhf_20261102_040415_2ab95096-8c39-449f-b36c-17c2813815a4.png&amp;w=2560&amp;q=85">
+    </div>
+  </div>
+  <div class="tilt"></div>
+  <div class="settle"></div>
+  <div class="ui">
+    <header class="bar">
+      <a class="logo" href="#" aria-label="Gênesis Energia Solar e Climatização">
+        <svg viewBox="0 0 40 40" aria-hidden="true"><g fill="color-mix(in srgb,#6d8f2a calc((1 - var(--k))*100%),#d8ee8e)"><path id="ray" d="M18.3 3.5h3.4l.9 8.4h-5.2Z"/><use href="#ray" transform="rotate(30 20 20)"/><use href="#ray" transform="rotate(60 20 20)"/><use href="#ray" transform="rotate(90 20 20)"/><use href="#ray" transform="rotate(120 20 20)"/><use href="#ray" transform="rotate(150 20 20)"/><use href="#ray" transform="rotate(180 20 20)"/><use href="#ray" transform="rotate(210 20 20)"/><use href="#ray" transform="rotate(240 20 20)"/><use href="#ray" transform="rotate(270 20 20)"/><use href="#ray" transform="rotate(300 20 20)"/><use href="#ray" transform="rotate(330 20 20)"/></g></svg>
+        <span><b>Gênesis</b><small>Energia Solar e Climatização</small></span>
+      </a>
+      <ul class="links">
+        <li><a href="#simulador">Simulador</a></li><li><a href="#como-funciona">Como funciona</a></li><li><a href="#ar-condicionado">Ar-condicionado</a></li><li><a href="#contato">Contato</a></li>
+      </ul>
+      <div class="side"><a href="tel:+5514991698959">(14) 99169-8959</a><a class="cta wa-link" href="https://wa.me/5514991698959" target="_blank" rel="noopener">Pedir orçamento</a></div>
+    </header>
+    <h1><span class="l1">Sua conta de luz</span><span><i>paga pelo</i> <span class="y">seu telhado</span></span></h1>
+    <div class="dock">
+      <div class="toggle" role="group" aria-label="Período do dia">
+        <button class="is-m pick-m" aria-pressed="false"><b>Dia</b><small>As placas geram energia</small></button>
+        <button class="is-n pick-n" aria-pressed="true"><b>Noite</b><small>Você usa os créditos</small></button>
+      </div>
+      <p class="cap">De dia o excedente vai para a rede da CPFL e vira crédito. À noite,<br>você consome esse crédito. Projeto, instalação e homologação por nossa conta.</p>
+    </div>
+  </div>
+</section>
+
+<div class="content">
+  <div class="proof reveal" aria-label="Avaliações">
+    <div class="glass">
+      <span class="stars"><strong>5,0</strong>
+        <svg viewBox="0 0 100 18" aria-hidden="true"><g id="st"><path d="M9 0l2.6 5.6 6.1.7-4.5 4.2 1.2 6L9 13.5 3.6 16.5l1.2-6L.3 6.3l6.1-.7Z"/></g><use href="#st" x="20"/><use href="#st" x="40"/><use href="#st" x="60"/><use href="#st" x="80"/></svg>
+        148 avaliações no Google</span>
+      <span class="dot"></span>
+      <span>Jardim Novo Horizonte, Jaú</span>
+      <span class="dot"></span>
+      <a href="https://www.google.com/maps/search/?api=1&amp;query=G%C3%AAnesis%20Energia%20Solar%20Ja%C3%BA&amp;query_place_id=ChIJr7-JNdWnuJQRbKyR_4nwbDY" target="_blank" rel="noopener">Ler as avaliações</a>
+    </div>
+  </div>
+
+  <section class="sim" id="simulador">
+    <div class="wrap">
+      <div class="reveal">
+        <span class="eyebrow"><svg viewBox="0 0 40 40" aria-hidden="true"><use href="#ray"/><use href="#ray" transform="rotate(60 20 20)"/><use href="#ray" transform="rotate(120 20 20)"/><use href="#ray" transform="rotate(180 20 20)"/><use href="#ray" transform="rotate(240 20 20)"/><use href="#ray" transform="rotate(300 20 20)"/></svg>Simulador</span>
+        <h2>Quanto da sua conta o sol pode pagar?</h2>
+        <p class="lead">Digite o valor médio da sua conta da CPFL. O cálculo mostra uma estimativa da economia e do tamanho do sistema. O número exato sai da visita técnica.</p>
+      </div>
+      <form class="panel glass reveal" onsubmit="return false" aria-describedby="sim-note">
+        <label for="conta">Valor médio da conta de luz</label>
+        <div class="bill"><span>R$</span><input id="conta" type="number" inputmode="numeric" min="80" max="20000" step="10" value="450"></div>
+        <input id="slider" type="range" min="80" max="3000" step="10" value="450" aria-label="Ajustar valor da conta">
+        <div class="out" aria-live="polite">
+          <div class="big"><small>Economia por mês</small><b id="oMes">R$ 0</b></div>
+          <div class="big"><small>Economia em 1 ano</small><b id="oAno">R$ 0</b></div>
+          <div><small>Sistema aproximado</small><b id="oKwp">0 kWp</b></div>
+          <div><small>Placas de 550 W</small><b id="oPl">0</b></div>
+        </div>
+        <a class="lime" id="simWa" href="https://wa.me/5514991698959" target="_blank" rel="noopener">
+          <svg viewBox="0 0 24 24" fill="currentColor" aria-hidden="true"><path d="M12 2a10 10 0 0 0-8.6 15.1L2 22l5-1.3A10 10 0 1 0 12 2Zm0 18.2a8.2 8.2 0 0 1-4.2-1.2l-.3-.2-3 .8.8-2.9-.2-.3A8.2 8.2 0 1 1 12 20.2Zm4.5-6.1c-.2-.1-1.5-.7-1.7-.8-.2-.1-.4-.1-.6.1l-.8 1c-.1.2-.3.2-.5.1a6.7 6.7 0 0 1-3.3-2.9c-.3-.4.2-.4.7-1.4.1-.2 0-.3 0-.4l-.8-1.8c-.2-.5-.4-.4-.6-.4h-.5a1 1 0 0 0-.7.3 3 3 0 0 0-.9 2.2 5.2 5.2 0 0 0 1.1 2.7 11.8 11.8 0 0 0 4.5 4c1.7.7 2.3.8 3.2.6.5-.1 1.5-.6 1.7-1.2.2-.6.2-1.1.1-1.2l-.5-.3Z"/></svg>
+          Mandar minha conta para a Gênesis
+        </a>
+        <p class="note" id="sim-note">Estimativa com tarifa média de R$ 0,95/kWh, geração de 125 kWh por kWp ao mês na região de Jaú e economia de cerca de 85% (a taxa mínima da CPFL continua). Não é proposta comercial.</p>
+      </form>
+    </div>
+  </section>
+
+  <section class="how" id="como-funciona">
+    <div class="wrap">
+      <div class="reveal">
+        <span class="eyebrow"><svg viewBox="0 0 40 40" aria-hidden="true"><use href="#ray"/><use href="#ray" transform="rotate(60 20 20)"/><use href="#ray" transform="rotate(120 20 20)"/><use href="#ray" transform="rotate(180 20 20)"/><use href="#ray" transform="rotate(240 20 20)"/><use href="#ray" transform="rotate(300 20 20)"/></svg>Como funciona</span>
+        <h2>Da conta de luz ao sistema ligado</h2>
+        <p class="lead">A mesma equipe acompanha do primeiro orçamento até a troca do medidor.</p>
+      </div>
+      <ol class="track glass reveal">
+        <li class="now"><em>Etapa 1</em><h3>Você manda a conta de luz</h3><p>Pelo WhatsApp. Com o histórico de consumo dá para dimensionar o sistema sem sobrar nem faltar placa.</p></li>
+        <li><em>Etapa 2</em><h3>Visita técnica e proposta</h3><p>Olhamos telhado, orientação e padrão de entrada. A proposta traz valor, economia prevista e formas de pagamento.</p></li>
+        <li><em>Etapa 3</em><h3>Instalação</h3><p>Equipe própria instala placas e inversor e deixa o sistema pronto para ligar.</p></li>
+        <li><em>Etapa 4</em><h3>Homologação na CPFL</h3><p>Cuidamos do processo na CPFL e da troca do medidor. A partir daí o crédito entra na sua conta.</p></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="clima" id="ar-condicionado">
+    <div class="wrap">
+      <div class="glass reveal">
+        <span class="eyebrow"><svg viewBox="0 0 40 40" aria-hidden="true"><use href="#ray"/><use href="#ray" transform="rotate(60 20 20)"/><use href="#ray" transform="rotate(120 20 20)"/><use href="#ray" transform="rotate(180 20 20)"/><use href="#ray" transform="rotate(240 20 20)"/><use href="#ray" transform="rotate(300 20 20)"/></svg>Climatização</span>
+        <h2>Ar-condicionado com quem já cuida da sua energia</h2>
+        <p class="lead">A Gênesis também instala e faz manutenção de ar-condicionado. Se você vai colocar placas e ar, resolve os dois com uma equipe só, e o sistema solar já sai dimensionado contando o consumo do ar.</p>
+        <div class="chips"><span>Instalação</span><span>Manutenção</span><span>Limpeza</span></div>
+      </div>
+      <a class="insta reveal" href="https://www.instagram.com/genesisenergiasolarjau/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.3" cy="6.7" r=".9" fill="currentColor" stroke="none"/></svg>
+        <div><strong>Veja as obras no Instagram</strong><span>@genesisenergiasolarjau</span></div>
+      </a>
+    </div>
+  </section>
+
+  <section class="contact" id="contato">
+    <div class="wrap">
+      <div class="reveal">
+        <span class="eyebrow"><svg viewBox="0 0 40 40" aria-hidden="true"><use href="#ray"/><use href="#ray" transform="rotate(60 20 20)"/><use href="#ray" transform="rotate(120 20 20)"/><use href="#ray" transform="rotate(180 20 20)"/><use href="#ray" transform="rotate(240 20 20)"/><use href="#ray" transform="rotate(300 20 20)"/></svg>Contato</span>
+        <h2>Mande sua conta de luz e receba o orçamento</h2>
+        <a class="lime wa-link" href="https://wa.me/5514991698959" target="_blank" rel="noopener">Chamar no WhatsApp</a>
+      </div>
+      <div class="cards glass reveal">
+        <div><h4>Telefone e WhatsApp</h4><a class="phone" href="tel:+5514991698959">(14) 99169-8959</a></div>
+        <div><h4>Horário</h4><p>Segunda a sexta<br>das 8h às 18h</p></div>
+        <div><h4>Endereço</h4><p>Rua Alessio de Almeida, 23<br>Jardim Novo Horizonte, Jaú/SP</p></div>
+      </div>
+    </div>
+  </section>
+</div>
+</main>
+<footer><div class="wrap"><span>Gênesis Energia Solar e Climatização · Jaú/SP</span><span>Os valores do simulador são estimativas.</span></div></footer>
+
+<div class="mini" role="group" aria-label="Período do dia">
+  <button class="is-m pick-m" aria-pressed="false"><span>Dia</span></button>
+  <button class="is-n pick-n" aria-pressed="true"><span>Noite</span></button>
+</div>
+
+<script>
+/* ---------- WhatsApp ---------- */
+const WA='5514991698959';
+const waUrl=t=>`https://wa.me/${WA}?text=${encodeURIComponent(t)}`;
+document.querySelectorAll('.wa-link').forEach(a=>a.href=waUrl('Olá! Vi o site da Gênesis e quero um orçamento de energia solar.'));
+
+/* ---------- Simulador ---------- */
+const TARIFA=.95,GERA=125,ECON=.85,PLACA=.55;
+const brl=v=>v.toLocaleString('pt-BR',{style:'currency',currency:'BRL',maximumFractionDigits:0});
+const inp=document.getElementById('conta'),sl=document.getElementById('slider');
+function calc(src){
+  const v=Math.max(0,+src.value||0);
+  if(src===inp)sl.value=Math.min(3000,Math.max(80,v));else inp.value=v;
+  const kwp=(v/TARIFA)/GERA,mes=v*ECON;
+  document.getElementById('oMes').textContent=brl(mes);
+  document.getElementById('oAno').textContent=brl(mes*12);
+  document.getElementById('oKwp').textContent=kwp.toLocaleString('pt-BR',{maximumFractionDigits:1})+' kWp';
+  document.getElementById('oPl').textContent=Math.max(1,Math.ceil(kwp/PLACA));
+  document.getElementById('simWa').href=waUrl(`Olá! Simulei no site: minha conta de luz é de ${brl(v)} por mês. Quero um orçamento de energia solar.`);
+}
+inp.addEventListener('input',()=>calc(inp));sl.addEventListener('input',()=>calc(sl));calc(inp);
+
+/* ---------- Entrada das seções e mini seletor ---------- */
+const hasIO='IntersectionObserver' in window;
+const io=hasIO?new IntersectionObserver(es=>es.forEach(e=>{if(e.isIntersecting){e.target.classList.add('in');io.unobserve(e.target)}}),{threshold:.15}):null;
+document.querySelectorAll('.reveal').forEach(el=>io?io.observe(el):el.classList.add('in'));
+const mini=document.querySelector('.mini');
+if(hasIO)new IntersectionObserver(([e])=>mini.classList.toggle('show',!e.isIntersecting),{threshold:.35}).observe(document.querySelector('.hero'));
+
+/* ---------- Neblina e troca dia/noite (código de referência) ---------- */
+const root=document.documentElement.style,$=id=>document.getElementById(id);
+const calm=matchMedia('(prefers-reduced-motion:reduce)').matches;
+const SINK=240,RISE=820,DEPTH=.27;
+const clamp=(x,a=0,b=1)=>Math.min(b,Math.max(a,x));
+const smooth=(a,b,x)=>{x=clamp((x-a)/(b-a));return x*x*(3-2*x)};
+let night=1,target=1,from=1,start=-1e9,queued=null,swapped=true,k=1;
+let animating=false,clock=0;
+
+const cv=$('fog'),gl=cv.getContext('webgl2',{alpha:true,premultipliedAlpha:true,antialias:false});
+let U={};
+if(gl){
+  const vs=`#version 300 es
+  void main(){vec2 p=vec2((gl_VertexID<<1)&2,gl_VertexID&2);gl_Position=vec4(p*2.-1.,0,1);}`;
+  const fs=`#version 300 es
+  precision highp float;
+  uniform vec2 R;uniform float T,S,K;out vec4 O;
+  float h(vec2 p){p=fract(p*vec2(123.34,456.21));p+=dot(p,p+45.32);return fract(p.x*p.y);}
+  float n(vec2 p){vec2 i=floor(p),f=fract(p);f=f*f*(3.-2.*f);
+    return mix(mix(h(i),h(i+vec2(1,0)),f.x),mix(h(i+vec2(0,1)),h(i+vec2(1,1)),f.x),f.y);}
+  float fbm(vec2 p){float a=.5,s=0.;mat2 m=mat2(1.6,1.2,-1.2,1.6);p=mat2(.8,.6,-.6,.8)*p+5.3;for(int i=0;i<5;i++){s+=a*n(p);p=m*p;a*=.5;}return s;}
+  void main(){
+    vec2 uv=gl_FragCoord.xy/R;uv.y=1.-uv.y;
+    float asp=R.x/R.y;vec2 p=vec2(uv.x*asp,uv.y);
+    float t=T*.05;
+    vec2 w=vec2(fbm(p*1.3+vec2(t,-t*.6)),fbm(p*1.3+vec2(-t*.8,t)+7.));
+    float d=fbm(p*1.9+w*1.7+vec2(t*1.6,-t*1.1+S*.5));
+    float e=fbm(p*.9-w+vec2(-t,t*.5)+3.);
+    float low=smoothstep(.70,1.04,uv.y+(d-.5)*.34);
+    float side=smoothstep(.2,.0,uv.x+(e-.5)*.28)+smoothstep(.8,1.,uv.x+(e-.5)*.28);
+    side*=smoothstep(.25,.6,uv.y)*.2;
+    float wisps=smoothstep(.5,.78,d)*smoothstep(.22,.5,uv.y)*smoothstep(.86,.6,uv.y)*.18;
+    float rest=clamp(low+side+wisps,0.,1.);
+    float front=1.02-S*.68;
+    float rise=smoothstep(front-.02,front+.26,uv.y+(d-.5)*.5);
+    float haze=S*(.3+.46*d);
+    float a=clamp(max(rest,max(rise*.97,haze)),0.,1.);
+    vec3 dayA=vec3(.97,.93,.84),dayB=vec3(.79,.78,.71);
+    vec3 nitA=vec3(.40,.45,.57),nitB=vec3(.15,.19,.29);
+    vec3 c=mix(mix(dayB,dayA,d*1.15),mix(nitB,nitA,d*1.1),K);
+    float porch=exp(-dot((uv-vec2(.72,.74))*vec2(1.7,2.6),(uv-vec2(.72,.74))*vec2(1.7,2.6))*3.2);
+    c=mix(c,vec3(.86,.55,.27),K*porch*.42*(1.-S));
+    O=vec4(c*a,a);
+  }`;
+  const sh=(t,s)=>{const o=gl.createShader(t);gl.shaderSource(o,s);gl.compileShader(o);
+    if(!gl.getShaderParameter(o,gl.COMPILE_STATUS))console.error(gl.getShaderInfoLog(o));return o};
+  const pr=gl.createProgram();gl.attachShader(pr,sh(gl.VERTEX_SHADER,vs));gl.attachShader(pr,sh(gl.FRAGMENT_SHADER,fs));
+  gl.linkProgram(pr);gl.useProgram(pr);
+  for(const u of['R','T','S','K'])U[u]=gl.getUniformLocation(pr,u);
+}
+function size(){
+  if(!gl)return;
+  const w=Math.round(Math.min(innerWidth,960)),h=Math.round(w*innerHeight/innerWidth);
+  if(cv.width!==w||cv.height!==h){cv.width=w;cv.height=h;gl.viewport(0,0,w,h)}
+}
+addEventListener('resize',size);size();
+
+const mBtns=document.querySelectorAll('.pick-m'),nBtns=document.querySelectorAll('.pick-n');
+function show(n){$('setM').classList.toggle('is-on',!n);$('setN').classList.toggle('is-on',!!n)}
+function pick(n){
+  if(n===target&&queued===null)return;
+  mBtns.forEach(b=>b.setAttribute('aria-pressed',!n));nBtns.forEach(b=>b.setAttribute('aria-pressed',!!n));
+  if(calm){target=night=n;k=n;show(n);return}
+  if(animating)queued=n;else begin(n,clock);
+}
+function begin(n,now){target=n;from=k;start=now;swapped=false;animating=true}
+mBtns.forEach(b=>b.onclick=()=>pick(0));nBtns.forEach(b=>b.onclick=()=>pick(1));
+
+function frame(now){
+  clock=now;
+  const d=now-start;let y=0,s=0,dip=0,k2=k;
+  if(animating){
+    if(d<SINK){const x=d/SINK;y=x*x*(3-2*x)*DEPTH}
+    else{
+      if(!swapped){swapped=true;night=target;show(target)}
+      const x=clamp((d-SINK)/RISE);y=Math.pow(1-x,3.4)*DEPTH;
+    }
+    s=smooth(0,SINK*.92,d)*(1-smooth(SINK+70,SINK+RISE*.92,d));
+    dip=smooth(30,190,d)*(1-smooth(330,720,d));
+    k=from+(target-from)*smooth(120,520,d);
+    k2=from+(target-from)*smooth(340,760,d);
+    if(d>=SINK+RISE){animating=false;k=k2=target;y=s=dip=0;if(queued!==null&&queued!==target){const q=queued;queued=null;begin(q,now)}else queued=null}
+  }
+  root.setProperty('--sink',(y*innerHeight).toFixed(1)+'px');
+  root.setProperty('--k',k.toFixed(3));root.setProperty('--k2',k2.toFixed(3));root.setProperty('--dip',dip.toFixed(3));
+  if(gl){gl.uniform2f(U.R,cv.width,cv.height);gl.uniform1f(U.T,now/1000);gl.uniform1f(U.S,s);gl.uniform1f(U.K,k);gl.drawArrays(gl.TRIANGLES,0,3)}
+}
+function loop(t){frame(t);requestAnimationFrame(loop)}
+requestAnimationFrame(loop);
+</script>
+</body>
+</html>
